@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.tnicacio.bd2project.entities.enums.UserRole;
 
 @Entity
@@ -23,7 +24,10 @@ public class Usuario implements Serializable {
 	private Integer id;
 	private String nome;
 	private String email;
+	
+	@JsonIgnore
 	private String senha;
+	
 	private Integer cargo;
 	
 	@JsonIgnore
@@ -69,10 +73,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
+	@JsonProperty
 	public String getSenha() {
 		return senha;
 	}
 
+	@JsonIgnore
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}

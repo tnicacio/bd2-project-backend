@@ -12,3 +12,9 @@ insert into venda(dt_venda, is_pagto_prazo, nr_parcelas, usuario_id) values
 ('2021-02-25 10:58:51'::timestamp, false, 0, 2),
 ('2021-02-25 11:02:12'::timestamp, false, 0, 3),
 ('2021-02-25 15:02:32'::timestamp, true, 3, 2);
+
+insert into itens(produto_id, venda_id, qt_produto) values
+(1, 1, 2),
+(3, 1, 3),
+(2, 3, 2),
+(1, 2, 4);

@@ -2,6 +2,8 @@ package com.tnicacio.bd2project.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tnicacio.bd2project.entities.enums.OrderStatus;
@@ -38,6 +41,9 @@ public class Venda implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "id.produto")
+	private Set<Itens> itens = new HashSet<>();
 	
 	public Venda() {}
 
@@ -109,6 +115,10 @@ public class Venda implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public Set<Itens> getItens() {
+		return itens;
 	}
 
 	@Override

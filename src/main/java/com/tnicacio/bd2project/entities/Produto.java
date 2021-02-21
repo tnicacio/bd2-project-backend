@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable {
@@ -114,6 +115,7 @@ public class Produto implements Serializable {
 		this.dtAtualizacao = dtAtualizacao;
 	}
 
+	@JsonIgnore
 	public Usuario getUsuario() {
 		return usuario;
 	}
