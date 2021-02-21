@@ -45,6 +45,9 @@ public class Venda implements Serializable {
 	@OneToMany(mappedBy = "id.venda")
 	private Set<Itens> itens = new HashSet<>();
 	
+	@OneToMany(mappedBy = "venda")
+	private Set<Parcelamento> parcelas = new HashSet<>();
+	
 	public Venda() {}
 
 	public Venda(Integer id, Instant dtVenda, Boolean isPagtoPrazo, Integer nrParcelas, OrderStatus status,
@@ -119,6 +122,10 @@ public class Venda implements Serializable {
 	
 	public Set<Itens> getItens() {
 		return itens;
+	}
+	
+	public Set<Parcelamento> getParcelas() {
+		return parcelas;
 	}
 	
 	public Double getTotal() {
