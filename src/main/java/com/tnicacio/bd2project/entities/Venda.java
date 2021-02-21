@@ -42,7 +42,7 @@ public class Venda implements Serializable {
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy = "id.produto")
+	@OneToMany(mappedBy = "id.venda")
 	private Set<Itens> itens = new HashSet<>();
 	
 	public Venda() {}
@@ -119,6 +119,13 @@ public class Venda implements Serializable {
 	
 	public Set<Itens> getItens() {
 		return itens;
+	}
+	
+	public Double getTotal() {
+		Double sum = itens.stream()
+						.map(item -> item.getSubTotal())
+						.reduce(0.0, (a,b) -> a + b);
+		return sum;
 	}
 
 	@Override

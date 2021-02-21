@@ -1,6 +1,7 @@
 package com.tnicacio.bd2project.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class VendaService {
 	}
 	
 	public Venda findById(Integer id) {
-		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+		Optional<Venda> venda = repository.findById(id);
+		return venda.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 }

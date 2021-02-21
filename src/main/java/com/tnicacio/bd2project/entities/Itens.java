@@ -42,8 +42,8 @@ public class Itens implements Serializable {
 	}
 
 	@JsonIgnore
-	public Produto getVenda() {
-		return id.getProduto();
+	public Venda getVenda() {
+		return id.getVenda();
 	}
 	
 	public void setVenda(Venda venda) {
