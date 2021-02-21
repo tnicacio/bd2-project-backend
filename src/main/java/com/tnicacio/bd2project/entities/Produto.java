@@ -28,16 +28,16 @@ public class Produto implements Serializable {
 	private Double preco;
 	
 	@Column(columnDefinition = "DECIMAL(6,2)")
-	private Double qt_estoque;
+	private Double qtEstoque;
 	
 	@Column(columnDefinition = "DECIMAL(6,2)")
-	private Double qt_estoque_minimo;
+	private Double qtEstoqueMinimo;
 	
 	@Column(columnDefinition = "DECIMAL(6,2)")
-	private Double qt_reservada;
+	private Double qtReservada;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant dt_atualizacao;
+	private Instant dtAtualizacao;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
@@ -45,16 +45,16 @@ public class Produto implements Serializable {
 	
 	public Produto() {}
 
-	public Produto(Integer id, String descricao, Double preco, Double qt_estoque, Double qt_estoque_minimo,
-			Double qt_reservada, Instant dt_atualizacao, Usuario usuario) {
+	public Produto(Integer id, String descricao, Double preco, Double qtEstoque, Double qtEstoqueMinimo,
+			Double qtReservada, Instant dtAtualizacao, Usuario usuario) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.preco = preco;
-		this.qt_estoque = qt_estoque;
-		this.qt_estoque_minimo = qt_estoque_minimo;
-		this.qt_reservada = qt_reservada;
-		this.dt_atualizacao = dt_atualizacao;
+		this.qtEstoque = qtEstoque;
+		this.qtEstoqueMinimo = qtEstoqueMinimo;
+		this.qtReservada = qtReservada;
+		this.dtAtualizacao = dtAtualizacao;
 		this.usuario = usuario;
 	}
 
@@ -82,36 +82,36 @@ public class Produto implements Serializable {
 		this.preco = preco;
 	}
 
-	public Double getQt_estoque() {
-		return qt_estoque;
+	public Double getQtEstoque() {
+		return qtEstoque;
 	}
 
-	public void setQt_estoque(Double qt_estoque) {
-		this.qt_estoque = qt_estoque;
+	public void setQtEstoque(Double qtEstoque) {
+		this.qtEstoque = qtEstoque;
 	}
 
-	public Double getQt_estoque_minimo() {
-		return qt_estoque_minimo;
+	public Double getQtEstoqueMinimo() {
+		return qtEstoqueMinimo;
 	}
 
-	public void setQt_estoque_minimo(Double qt_estoque_minimo) {
-		this.qt_estoque_minimo = qt_estoque_minimo;
+	public void setQtEstoqueMinimo(Double qtEstoqueMinimo) {
+		this.qtEstoqueMinimo = qtEstoqueMinimo;
 	}
 
-	public Double getQt_reservada() {
-		return qt_reservada;
+	public Double getQtReservada() {
+		return qtReservada;
 	}
 
-	public void setQt_reservada(Double qt_reservada) {
-		this.qt_reservada = qt_reservada;
+	public void setQtReservada(Double qtReservada) {
+		this.qtReservada = qtReservada;
 	}
 
-	public Instant getDt_atualizacao() {
-		return dt_atualizacao;
+	public Instant getDtAtualizacao() {
+		return dtAtualizacao;
 	}
 
-	public void setDt_atualizacao(Instant dt_atualizacao) {
-		this.dt_atualizacao = dt_atualizacao;
+	public void setDtAtualizacao(Instant dtAtualizacao) {
+		this.dtAtualizacao = dtAtualizacao;
 	}
 
 	public Usuario getUsuario() {
