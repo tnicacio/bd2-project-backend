@@ -17,7 +17,7 @@ public class UsuarioService {
 	private UsuarioRepository repository;
 	
 	public List<Usuario> findAll(){
-		return repository.findAll();
+		return repository.findAllByOrderByNomeAsc();
 	}
 	
 	public Usuario findById(Integer id) {

@@ -17,7 +17,7 @@ public class VendaService {
 	private VendaRepository repository;
 	
 	public List<Venda> findAll(){
-		return repository.findAll();
+		return repository.findAllByOrderByDtVendaDesc();
 	}
 	
 	public Venda findById(Integer id) {
