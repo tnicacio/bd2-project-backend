@@ -21,7 +21,7 @@ public enum OrderStatus {
 		return Arrays.stream(OrderStatus.values())
 				.filter(value -> value.getCode().equals(code))
 				.findFirst()
-				.orElseThrow(() -> new IllegalArgumentException("Ivalid UserRole code"));
+				.orElse(null);
 	}
 
 }
