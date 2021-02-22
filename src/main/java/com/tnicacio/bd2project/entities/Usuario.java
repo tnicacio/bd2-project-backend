@@ -1,6 +1,7 @@
 package com.tnicacio.bd2project.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,31 +22,41 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	private Instant dtAtualizacao;
+	private String imageUri;
 	private String nome;
 	private String email;
-	
-	@JsonIgnore
 	private String senha;
-	
-	private Integer cargo;
-	
+
+	private Integer cargo = UserRole.UNDEFINED.getCode();
+
+	private Boolean ieAtivo;
+	private Instant dtInativacao;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Produto> produtos = new ArrayList<>();
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "usuario")
 	private List<Venda> vendas = new ArrayList<>();
-	
-	public Usuario() {}
-	
-	public Usuario(Integer id, String nome, String email, String senha, UserRole cargo) {
+
+	public Usuario() {
+	}
+
+	public Usuario(Integer id, Instant dtAtualizacao, String imageUri, String nome, String email, String senha,
+			UserRole cargo, Boolean ieAtivo, Instant dtInativacao) {
 		super();
 		this.id = id;
+		this.dtAtualizacao = dtAtualizacao;
+		this.imageUri = imageUri;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		setCargo(cargo);
+		this.ieAtivo = ieAtivo;
+		this.dtInativacao = dtInativacao;
 	}
 
 	public Integer getId() {
@@ -54,6 +65,22 @@ public class Usuario implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Instant getDtAtualizacao() {
+		return dtAtualizacao;
+	}
+
+	public void setDtAtualizacao(Instant dtAtualizacao) {
+		this.dtAtualizacao = dtAtualizacao;
+	}
+
+	public String getImageUri() {
+		return imageUri;
+	}
+
+	public void setImageUri(String imageUri) {
+		this.imageUri = imageUri;
 	}
 
 	public String getNome() {
@@ -90,6 +117,22 @@ public class Usuario implements Serializable {
 		}
 	}
 
+	public Boolean getIeAtivo() {
+		return ieAtivo;
+	}
+
+	public void setIeAtivo(Boolean ieAtivo) {
+		this.ieAtivo = ieAtivo;
+	}
+
+	public Instant getDtInativacao() {
+		return dtInativacao;
+	}
+
+	public void setDtInativacao(Instant dtInativacao) {
+		this.dtInativacao = dtInativacao;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -114,6 +157,5 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-	
 
 }

@@ -9,4 +9,6 @@ import com.tnicacio.bd2project.entities.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Integer>{
 
 	public List<Produto> findAllByOrderByDescricaoAsc();
+	
+	public List<Produto> findAllByDtInativacaoIsNullOrderByDescricaoAsc();
 }

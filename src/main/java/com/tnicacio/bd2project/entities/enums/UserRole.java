@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public enum UserRole {
 	
+	UNDEFINED(0),
 	ADMIN(1),
 	CLIENT(2);
 	
