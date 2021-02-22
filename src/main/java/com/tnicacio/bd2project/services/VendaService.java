@@ -24,4 +24,10 @@ public class VendaService {
 		Optional<Venda> venda = repository.findById(id);
 		return venda.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
+	
+	public Venda insert(Venda venda) {
+		return repository.save(venda);
+	}
+	
+	
 }

@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.tnicacio.bd2project.entities.enums.UserRole;
 
 @Entity
@@ -27,9 +29,11 @@ public class Usuario implements Serializable {
 	private String imageUri;
 	private String nome;
 	private String email;
+	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String senha;
 
-	private Integer cargo = UserRole.UNDEFINED.getCode();
+	private Integer cargo;
 
 	private Boolean ieAtivo;
 	private Instant dtInativacao;

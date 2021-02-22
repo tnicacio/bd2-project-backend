@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class Produto implements Serializable {
@@ -52,6 +54,7 @@ public class Produto implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Usuario usuario;
 
 	@OneToMany(mappedBy = "id.produto")
@@ -157,7 +160,6 @@ public class Produto implements Serializable {
 		this.dtInativacao = dtInativacao;
 	}
 
-	@JsonIgnore
 	public Usuario getUsuario() {
 		return usuario;
 	}

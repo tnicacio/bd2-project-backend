@@ -38,13 +38,28 @@ public class ProdutoService {
 		Optional<Produto> produto = repository.findById(id);
 		return produto.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
-
-	public Produto insert(Produto produto, Integer userId) {
-		Usuario user = userRepository.getOne(userId);
-		produto.setUsuario(user);
+	
+	public Produto insert(Produto produto) {
 		return repository.save(produto);
 	}
 
+	public void inactivate(Integer id, Usuario obj) {
+		try {
+			Produto produto = repository.getOne(id);
+			Usuario user = userRepository.getOne(obj.getId());
+			produto.setUsuario(user);
+			produto.setIeAtivo(false);
+			repository.save(produto);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+
+	/*
+	 * Deprecated: Use inactivate, instead
+	*/
 	public void delete(Integer id, Integer userId) {
 		try {
 			// repository.deleteById(id);
@@ -60,17 +75,11 @@ public class ProdutoService {
 		}
 	}
 
-	public Produto update(Integer id, Produto obj, Integer userId) {
+	public Produto update(Integer id, Produto obj) {
 		try {
 			Produto produto = repository.getOne(id);
-			Usuario user = userRepository.getOne(userId);
-
-			if (produto != null) {
-				produto.setUsuario(user);
-				updateData(produto, obj);
-				return repository.save(produto);
-			}
-			return null;
+			updateData(produto, obj);
+			return repository.save(produto);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException(id);
 		} catch (Exception e) {
@@ -80,7 +89,7 @@ public class ProdutoService {
 
 	private void updateData(Produto entity, Produto obj) {
 		if (entity.getUsuario() == null) {
-			throw new DatabaseException("Missing User ID");
+			throw new DatabaseException("Missing User responsible");
 		}
 		if (obj.getDescricao() != null && !"".equals(obj.getDescricao().trim())) {
 			entity.setDescricao(obj.getDescricao());

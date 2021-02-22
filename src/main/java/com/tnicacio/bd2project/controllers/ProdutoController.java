@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.tnicacio.bd2project.entities.Produto;
+import com.tnicacio.bd2project.entities.Usuario;
 import com.tnicacio.bd2project.services.ProdutoService;
 
 @RestController
@@ -42,26 +42,24 @@ public class ProdutoController {
 		Produto produto = service.findById(id);
 		return ResponseEntity.ok().body(produto);
 	}
-
-	@PostMapping(value = "/userid={id}")
-	public ResponseEntity<Produto> insert(@RequestBody Produto produto, @PathVariable Integer id) {
-		produto = service.insert(produto, id);
+	
+	@PostMapping
+	public ResponseEntity<Produto> insert(@RequestBody Produto produto) {
+		produto = service.insert(produto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(produto);
 	}
 
-	@DeleteMapping(value = "/{id}/userid={uid}")
-	public ResponseEntity<Void> delete(@PathVariable(value = "id") Integer id,
-			@PathVariable(value = "uid") Integer uid) {
-		service.delete(id, uid);
+	@PutMapping(value = "/{id}/inactivate")
+	public ResponseEntity<Void> inactivate(@PathVariable Integer id, @RequestBody Usuario obj) {
+		service.inactivate(id, obj);
 		return ResponseEntity.noContent().build();
 	}
 
-	@PutMapping(value = "/{id}/userid={uid}")
-	public ResponseEntity<Produto> update(@PathVariable(value = "id") Integer id, @RequestBody Produto obj,
-			@PathVariable(value = "uid") Integer uid) {
-		obj = service.update(id, obj, uid);
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Produto> update(@PathVariable(value = "id") Integer id, @RequestBody Produto obj) {
+		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
 }
