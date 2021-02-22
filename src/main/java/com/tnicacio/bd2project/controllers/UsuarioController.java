@@ -50,7 +50,7 @@ public class UsuarioController {
 		return ResponseEntity.created(uri).body(usuario);
 	}
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping(value = "/{id}/inactivate")
 	public ResponseEntity<Void> inactivate(@PathVariable Integer id){
 		service.inactivate(id);
 		return ResponseEntity.noContent().build();

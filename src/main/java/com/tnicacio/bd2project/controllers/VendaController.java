@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,4 +43,16 @@ public class VendaController {
 				.toUri();
 		return ResponseEntity.created(uri).body(venda);
 	}
+	
+	@PutMapping(value = "/{id}/{action}")
+	public ResponseEntity<Venda> update(@PathVariable Integer id, @PathVariable String action) {
+		Venda venda = null;
+		if ("confirm".equals(action)) {
+			venda = service.confirm(id);
+		} else if ("cancel".equals(action)) {
+			venda = service.cancel(id);
+		}
+		return ResponseEntity.ok().body(venda);
+	}
+	
 }
