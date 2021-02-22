@@ -112,7 +112,10 @@ public class Usuario implements Serializable {
 	}
 
 	public UserRole getCargo() {
-		return UserRole.valueOf(cargo);
+		if (cargo != null) {
+			return UserRole.valueOf(cargo);
+		}
+		return null;
 	}
 
 	public void setCargo(UserRole cargo) {
