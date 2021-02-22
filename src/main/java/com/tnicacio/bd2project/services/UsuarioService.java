@@ -38,7 +38,24 @@ public class UsuarioService {
 	public Usuario insert(Usuario usuario) {
 		return repository.save(usuario);
 	}
+	
+	public void inactivate(Integer id) {
+		try {
+			Usuario user = repository.getOne(id);
+			user.setIeAtivo(false);
+			repository.save(user);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
 
+	/*
+	 * Deprecated: use inactivate instead.
+	 */
 	public void delete(Integer id) {
 		try {
 			Usuario user = repository.getOne(id);

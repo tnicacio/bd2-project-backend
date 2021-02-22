@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,9 +50,9 @@ public class UsuarioController {
 		return ResponseEntity.created(uri).body(usuario);
 	}
 	
-	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
-		service.delete(id);
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Void> inactivate(@PathVariable Integer id){
+		service.inactivate(id);
 		return ResponseEntity.noContent().build();
 	}
 	
