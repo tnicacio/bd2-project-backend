@@ -47,9 +47,9 @@ public class VendaController {
 	@PutMapping(value = "/{id}/{action}")
 	public ResponseEntity<Venda> update(@PathVariable Integer id, @PathVariable String action) {
 		Venda venda = null;
-		if ("confirm".equals(action)) {
+		if ("confirmar".equals(action)) {
 			venda = service.confirm(id);
-		} else if ("cancel".equals(action)) {
+		} else if ("cancelar".equals(action)) {
 			venda = service.cancel(id);
 		}
 		return ResponseEntity.ok().body(venda);

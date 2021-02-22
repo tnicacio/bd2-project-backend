@@ -1,0 +1,26 @@
+@Usuario
+[GET] /usuarios (todos)
+[GET] /usuarios/ativos (usuarios ativos) 
+[GET] /usuarios/{id} (usuario pelo id)
+[POST] /usuarios (@body: usuario a ser inserido)
+[PUT] /usuarios/{id} (atualizar usuário pelo id)
+[PUT] /usuarios/{id}/inativar (inativar usuário pelo id) 
+
+@Produto
+[GET] /produtos (todos)
+[GET] /produtos/ativos (produtos ativos)
+[GET] /produtos/{id} (produto pelo id)
+[POST] /produtos (@body: produto a ser inserido + usuário responsável pelo insert | "usuario": { "id": 1}) 
+[PUT] /produtos/{id} (atualizar produto pelo id, no @body precisa ter o usuário responsável pelo update)
+[PUT] /produtos/{id}/inativar (inativar produto pelo id, no @body precisa ter o usuário responsável pelo update)
+
+@Venda
+[GET] /vendas (todas)
+[GET] /vendas/{id} (venda pelo id)
+[POST] /vendas (@body: venda a ser inserida + usuário responsável pelo insert | "usuario": { "id": 1})
+[PUT] /vendas/{id}/{confirmar|cancelar}(confirmar ou cancelar a venda) 
+
+@Itens
+[GET]  /itens/{vid} (pelo id da venda) 
+[POST] /itens/{vid} (inserir item pelo id da venda) /itens/{vid} (@body = { "produto": {"id": 1}, "qtProduto": 2})
+[POST] /itens/{vid}/postall (inserir uma lista de itens pelo id da venda) (@body = [{"produto":{"id": 1},"qtProduto": 2}, {"produto":{"id": 2},"qtProduto": 3}])

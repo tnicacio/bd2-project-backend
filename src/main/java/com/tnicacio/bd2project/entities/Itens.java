@@ -6,7 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.tnicacio.bd2project.entities.pk.ItensPK;
 
 @Entity
@@ -41,7 +42,7 @@ public class Itens implements Serializable {
 		id.setProduto(produto);
 	}
 
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY)
 	public Venda getVenda() {
 		return id.getVenda();
 	}
@@ -67,7 +68,10 @@ public class Itens implements Serializable {
 	}
 	
 	public Double getSubTotal() {
-		return qtProduto * precoUnitario;
+		if (qtProduto != null && precoUnitario != null) {
+			return qtProduto * precoUnitario;
+		}
+		return 0.0;
 	}
 
 	@Override

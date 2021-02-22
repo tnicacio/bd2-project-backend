@@ -31,7 +31,7 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(produtos);
 	}
 
-	@GetMapping(value = "/active")
+	@GetMapping(value = "/ativos")
 	public ResponseEntity<List<Produto>> findActives() {
 		List<Produto> produtos = service.findActives();
 		return ResponseEntity.ok().body(produtos);
@@ -51,7 +51,7 @@ public class ProdutoController {
 		return ResponseEntity.created(uri).body(produto);
 	}
 
-	@PutMapping(value = "/{id}/inactivate")
+	@PutMapping(value = "/{id}/inativar")
 	public ResponseEntity<Void> inactivate(@PathVariable Integer id, @RequestBody Usuario obj) {
 		service.inactivate(id, obj);
 		return ResponseEntity.noContent().build();
