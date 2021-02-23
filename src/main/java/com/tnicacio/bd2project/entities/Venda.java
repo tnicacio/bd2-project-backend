@@ -28,10 +28,13 @@ public class Venda implements Serializable {
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant dtVenda;
+	
+	private String endereco;
 
 	private Boolean isPagtoPrazo;
-	private Integer nrParcelas;
 	
+	private Integer nrParcelas;
+
 	@Column(length = 1)
 	private String status;
 	
@@ -50,11 +53,12 @@ public class Venda implements Serializable {
 	
 	public Venda() {}
 
-	public Venda(Integer id, Instant dtVenda, Boolean isPagtoPrazo, Integer nrParcelas, OrderStatus status,
+	public Venda(Integer id, Instant dtVenda, String endereco, Boolean isPagtoPrazo, Integer nrParcelas, OrderStatus status,
 			Instant dtAtualizacao, Usuario usuario) {
 		super();
 		this.id = id;
 		this.dtVenda = dtVenda;
+		this.endereco = endereco;
 		this.isPagtoPrazo = isPagtoPrazo;
 		this.nrParcelas = nrParcelas;
 		setStatus(status);
@@ -76,6 +80,14 @@ public class Venda implements Serializable {
 
 	public void setDtVenda(Instant dtVenda) {
 		this.dtVenda = dtVenda;
+	}
+	
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public Boolean getIsPagtoPrazo() {
