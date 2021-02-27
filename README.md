@@ -1,8 +1,6 @@
 # bd2-project-backend
 
-## Routes
-
-### @Usuario (User)
+## @Usuario (User)
 #### \[GET\] /usuarios 
 All users
 #### \[GET\] /usuarios/ativos 
@@ -17,7 +15,7 @@ Update user by id
 Inactivate user by id 
 <br /><br />
 
-### @Produto (Product)
+## @Produto (Product)
 #### \[GET\] /produtos 
 All products 
 #### \[GET\] /produtos/ativos 
@@ -32,7 +30,7 @@ Update product by id. Request body needs to have the user responsible for the up
 Inactivate product by id. User responsible also needs to be identified inside the request body, just like updating a product by id
 <br /><br />
 
-### @Venda (Order)
+## @Venda (Order)
 #### \[GET\] /vendas 
 All orders
 #### \[GET\] /vendas/{id} 
@@ -43,7 +41,7 @@ Request body: order to be inserted + user responsible. ```JSON.stringify({ ...ne
 Confirm or cancel order by id
 <br /><br />
 
-### @Itens (Items)
+## @Itens (Items)
 #### \[GET\]  /itens/{vid} 
 Item by id
 #### \[POST\] /itens/{vid} 
@@ -52,7 +50,7 @@ Insert item by id. Request body example:```{ "produto": {"id": 1}, "qtProduto": 
 Insert a list of items related to an order id. Request body example: ```\[{"produto":{"id": 1},"qtProduto": 2}, {"produto":{"id": 2},"qtProduto": 3}\]```
 <br /><br />
 
-### @Parcelamento (Installment)
+## @Parcelamento (Installment)
 #### \[GET\] /parcelamentos 
 All installments
 #### \[GET\] /parcelamentos/{vid} 
