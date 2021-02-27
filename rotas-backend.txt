@@ -24,3 +24,7 @@
 [GET]  /itens/{vid} (pelo id da venda) 
 [POST] /itens/{vid} (inserir item pelo id da venda) /itens/{vid} (@body = { "produto": {"id": 1}, "qtProduto": 2})
 [POST] /itens/{vid}/postall (inserir uma lista de itens pelo id da venda) (@body = [{"produto":{"id": 1},"qtProduto": 2}, {"produto":{"id": 2},"qtProduto": 3}])
+
+@Parcelamento
+[GET] /parcelamentos (todos)
+[GET] /parcelamentos/{vid} (pelo id da venda)
