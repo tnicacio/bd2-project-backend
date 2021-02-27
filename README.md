@@ -47,7 +47,7 @@ Item by id
 #### \[POST\] /itens/{vid} 
 Insert item by id. Request body example:```{ "produto": {"id": 1}, "qtProduto": 2 }) ```
 #### \[POST\] /itens/{vid}/postall 
-Insert a list of items related to an order id. Request body example: 
+Insert a list of items related to an order id. Request body example: <br />
 ```[{"produto":{"id": 1},"qtProduto": 2}, {"produto":{"id": 2},"qtProduto": 3}]```
 <br /><br />
 
